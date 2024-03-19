@@ -20,6 +20,14 @@ app.get("/productos", (req, res) => {
 });
 
 
+app.get("/productos/:id", (req, res) => {
+    let id = parseInt(req.params.id);
+    let todosProductos = manager.getProducts();
+    let productoId = todosProductos.find(producto => producto.id === id);
+    if (!productoId) return res.send("El producto no existe");
+    res.send(productoId);
+});
+
 app.listen(PUERTO, () => {
     console.log(`Escuchando en el http://localhost:${PUERTO}`)
 })
