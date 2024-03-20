@@ -47,13 +47,12 @@ export default class ProductManager {
     }
 
     getProducts() {
-
         if (existsSync(this.path)) {
 
             try {
                 let productos = readFileSync(this.path, "utf-8");
                 this.products = JSON.parse(productos);
-                console.log(this.products)
+                return this.products
             } catch (error) {
                 console.log("[]");
             }
@@ -114,6 +113,4 @@ manager.addProduct( "Pedales automáticos", "Pedales automáticos para una conex
 manager.addProduct( "Kit de herramientas para bicicleta", "Kit completo de herramientas esenciales para el mantenimiento y reparación de bicicletas.", 50, "Sin imagen", "TOOL008", 20)
 manager.addProduct( "Maillot de ciclismo", "Maillot transpirable y ajustado para un rendimiento óptimo en cada salida en bicicleta.", 40, "Sin imagen", "JER009", 25)
 manager.addProduct( "Llantas de bicicleta de carretera", "Llantas ligeras y resistentes diseñadas para rodar rápido y con estabilidad en carreteras.", 100, "Sin imagen", "RIM010", 12)
-   
-  
    
