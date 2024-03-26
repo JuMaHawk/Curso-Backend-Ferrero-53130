@@ -57,7 +57,7 @@ export default class ProductManager {
                 console.log("[]");
             }
         } else {
-            console.log([])
+            console.log("[]")
         }
     }
 
