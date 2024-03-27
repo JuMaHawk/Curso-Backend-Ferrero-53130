@@ -3,90 +3,110 @@
     "id": 1,
     "title": "Mountain bike",
     "description": "Bicicleta diseñada para terrenos de montaña con suspensión delantera y trasera.",
-    "price": 550,
-    "thumbnail": "Sin imagen",
     "code": "Sin imagen",
-    "stock": "MTB001"
+    "price": 550,
+    "status": true,
+    "stock": 20,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
   },
   {
     "id": 2,
     "title": "Casco de ciclismo",
     "description": "Casco ligero y aerodinámico para ciclistas que garantiza la máxima seguridad.",
-    "price": 45,
-    "thumbnail": "Sin imagen",
     "code": "HELM002",
-    "stock": 30
+    "price": 45,
+    "status": true,
+    "stock": 30,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
   },
   {
     "id": 3,
     "title": "Guantes de ciclismo",
     "description": "Guantes acolchados para mayor comodidad y protección durante el pedaleo.",
-    "price": 25,
-    "thumbnail": "Sin imagen",
     "code": "GLOV003",
-    "stock": 25
+    "price": 25,
+    "status": true,
+    "stock": 25,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
   },
   {
     "id": 4,
     "title": "Candado para bicicleta",
     "description": "Candado resistente y duradero para mantener tu bicicleta segura en todo momento.",
-    "price": 20,
-    "thumbnail": "Sin imagen",
     "code": "LOCK004",
-    "stock": 40
+    "price": 20,
+    "status": true,
+    "stock": 40,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
   },
   {
     "id": 5,
     "title": "Faros LED para bicicleta",
     "description": "Faros delanteros y traseros de alta potencia para una visibilidad óptima en la oscuridad.",
-    "price": 35,
-    "thumbnail": "Sin imagen",
     "code": "LITE005",
-    "stock": 20
+    "price": 35,
+    "status": true,
+    "stock": 20,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
   },
   {
     "id": 6,
     "title": "Portabultos trasero",
     "description": "Portabultos de aluminio ajustable para transportar carga en tu bicicleta de forma segura.",
-    "price": 30,
-    "thumbnail": "Sin imagen",
     "code": "RACK006",
-    "stock": 10
+    "price": 30,
+    "status": true,
+    "stock": 10,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
   },
   {
     "id": 7,
     "title": "Pedales automáticos",
     "description": "Pedales automáticos para una conexión segura y eficiente entre tus zapatos y la bicicleta.",
-    "price": 60,
-    "thumbnail": "Sin imagen",
     "code": "PEDL007",
-    "stock": 15
+    "price": 60,
+    "status": true,
+    "stock": 15,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
   },
   {
     "id": 8,
     "title": "Kit de herramientas para bicicleta",
     "description": "Kit completo de herramientas esenciales para el mantenimiento y reparación de bicicletas.",
-    "price": 50,
-    "thumbnail": "Sin imagen",
     "code": "TOOL008",
-    "stock": 20
+    "price": 50,
+    "status": true,
+    "stock": 20,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
   },
   {
     "id": 9,
     "title": "Maillot de ciclismo",
     "description": "Maillot transpirable y ajustado para un rendimiento óptimo en cada salida en bicicleta.",
-    "price": 40,
-    "thumbnail": "Sin imagen",
     "code": "JER009",
-    "stock": 25
+    "price": 40,
+    "status": true,
+    "stock": 25,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
   },
   {
     "id": 10,
     "title": "Llantas de bicicleta de carretera",
     "description": "Llantas ligeras y resistentes diseñadas para rodar rápido y con estabilidad en carreteras.",
-    "price": 100,
-    "thumbnail": "Sin imagen",
     "code": "RIM010",
-    "stock": 12
+    "price": 100,
+    "status": true,
+    "stock": 12,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
   }
 ]
