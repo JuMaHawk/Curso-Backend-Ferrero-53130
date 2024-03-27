@@ -35,10 +35,10 @@ router.get("/products/:id", async (req, res) => {
 });
 
 
-//RUTA PARA AGREGAR PRODUCTOS AL ARRAY. (NO FUNCIONA...no hace bien lo del id)
+//RUTA PARA AGREGAR PRODUCTOS AL ARRAY. (NO FUNCIONA...no hace bien lo del id).
 router.post("/products", async (req, res) => {
+   
     const nuevoProducto = req.body;
-    // console.log(nuevoProducto)
 
     try {
         await manager.addProduct(nuevoProducto);
@@ -49,14 +49,26 @@ router.post("/products", async (req, res) => {
     }
 })
 
-
-router.put("/products/:pid", (req, res) => {
+//RUTA PARA ACTUALIZAR UN PRODUCTO POR ID.
+router.put("/products/:pid", async (req, res) => {
     const id = req.query.pid;
     const productoActualizado = req.body;
     try {
-        manager.updateProduct(parseInt(id), productoActualizado);
-    } catch {
+        await manager.updateProduct(parseInt(id), productoActualizado);
+        res.status(201).json({ message: "Producto actualizado correctamente" })
+    } catch (error) {
+        res.status(500).json({ error: "Error interno del servidor" })
+    }
+})
 
+//RUTA PARA ELIMINAR UN PRODUCTO.
+router.delete("products/:pid", async (req,res) => {
+    const id = parseInt(req.params.pid);
+    try {
+        await manager.deleteProduct(id);        
+        res.status(201).json({ message: "Producto eliminado correctamente" })
+    } catch (error) {
+        res.status(500).json({ error: "Error interno del servidor" })
     }
 })
 

@@ -22,17 +22,6 @@
     "thumbnail": "Sin imagen"
   },
   {
-    "id": 3,
-    "title": "Guantes de ciclismo",
-    "description": "Guantes acolchados para mayor comodidad y protección durante el pedaleo.",
-    "code": "GLOV003",
-    "price": 25,
-    "status": true,
-    "stock": 25,
-    "category": "Categoria",
-    "thumbnail": "Sin imagen"
-  },
-  {
     "id": 4,
     "title": "Candado para bicicleta",
     "description": "Candado resistente y duradero para mantener tu bicicleta segura en todo momento.",

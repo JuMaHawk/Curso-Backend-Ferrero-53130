@@ -3,7 +3,7 @@ import { clearScreenDown } from "readline";
 
 
 export default class ProductManager {
-    static ultimoId = 0;
+    static ultimoId = 10;
     constructor(path) {
         this.path = path
         this.products = []
@@ -11,13 +11,13 @@ export default class ProductManager {
 
 
     //CREO EL METODO ADDPRODUCT Y HAGO LAS VALIDACIONES PEDIDAS EN LA CONSIGNA.
-    async addProduct({title, description, code, price, stock, category, thumbnail}) {
+    async addProduct({ title, description, code, price, stock, category, thumbnail }) {
 
         try {
             const nuevosDatos = await this.leerDatos();
 
             //VALIDO QUE SE ENVIEN TODOS LOS CAMPOS.    
-            if (!title || !description || !code || !price || !stock|| !category ) {
+            if (!title || !description || !code || !price || !stock || !category) {
                 console.log("Por favor complete todos los campos")
                 return;
             }
@@ -35,10 +35,10 @@ export default class ProductManager {
                 description,
                 code,
                 price,
-                status : true,
+                status: true,
                 stock,
                 category,
-                thumbnail : thumbnail || []                
+                thumbnail: thumbnail || []
             };
 
             //AGREGO EL PRODUCTO INSTANCIADO AL ARRAY DE PRODUCTOS
@@ -54,9 +54,9 @@ export default class ProductManager {
 
     async getProducts() {
         try {
-            let productos = await fs.readFile(this.path, "utf-8");
-            this.products = JSON.parse(productos);
-            return this.products
+            const nuevosDatos = await this.leerDatos();
+            return nuevosDatos
+
         } catch (error) {
             console.log("Error al leer los datos");
         }
@@ -77,7 +77,7 @@ export default class ProductManager {
 
     async updateProduct(id, propiedad, valor) {
 
-        const product = JSON.parse(await readFileSync(this.path, "utf-8"));
+        const product = JSON.parse(await fs.readFile(this.path, "utf-8"));
         const busquedaDeProduct = product.find(item => item.id === id)
 
         if (!busquedaDeProduct) {
@@ -90,15 +90,21 @@ export default class ProductManager {
     }
 
     async deleteProduct(id) {
-        const product = JSON.parse(await readFileSync(this.path, "utf-8"));
-        const busquedaDeProduct = product.findIndex(item => item.id === id)
-        if (busquedaDeProduct === -1) {
-            console.log(`No se encontro un producto con el id especificado`)
-        } else {
-            product.splice(busquedaDeProduct, 1)
-            console.log(`Producto eliminado con exito! \n`, product)
-            this.products = product
-            writeFileSync(this.path, JSON.stringify(this.products, null, 2))
+        try {
+            const product = await this.leerDatos();
+            const indice = product.findIndex(item => item.id === id)
+            if (indice !== -1) {
+                product.splice(indice, 1)
+                await this.guardarDatos(product)
+                // await fs.writeFile(this.path, JSON.stringify(product, null, 2))
+                console.log(`Producto eliminado con exito! \n`, product)
+
+            } else {
+                console.log(`No se encontro un producto con el id especificado`)
+            }
+
+        } catch (error) {
+            console.log("Error al intentar eliminar el producto")
         }
     }
 
@@ -138,3 +144,5 @@ const manager = new ProductManager("./src/models/productos.json")
 // manager.addProduct("Kit de herramientas para bicicleta", "Kit completo de herramientas esenciales para el mantenimiento y reparación de bicicletas.", 50, "Sin imagen", "TOOL008", 20)
 // manager.addProduct("Maillot de ciclismo", "Maillot transpirable y ajustado para un rendimiento óptimo en cada salida en bicicleta.", 40, "Sin imagen", "JER009", 25)
 // manager.addProduct("Llantas de bicicleta de carretera", "Llantas ligeras y resistentes diseñadas para rodar rápido y con estabilidad en carreteras.", 100, "Sin imagen", "RIM010", 12)
+
+console.log(manager.deleteProduct(3))
