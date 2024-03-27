@@ -35,7 +35,7 @@ router.get("/products/:id", async (req, res) => {
 });
 
 
-//RUTA PARA AGREGAR PRODUCTOS AL ARRAY. (NO FUNCIONA...DEVUELVE MENSAJE AGREGADO CORRECTAMENTE, PERO NO SE AGREGA A PRODUCT.JSON)
+//RUTA PARA AGREGAR PRODUCTOS AL ARRAY. (NO FUNCIONA...no hace bien lo del id)
 router.post("/products", async (req, res) => {
     const nuevoProducto = req.body;
     // console.log(nuevoProducto)

@@ -114,7 +114,7 @@ export default class ProductManager {
 
     async leerDatos() {
         try {
-            nuevosDatos = JSON.parse(await fs.readFile(this.path, "utf-8"));
+            const nuevosDatos = JSON.parse(await fs.readFile(this.path, "utf-8"));
             return nuevosDatos;
         } catch (error) {
             console.log("Error al leer el archivo")
