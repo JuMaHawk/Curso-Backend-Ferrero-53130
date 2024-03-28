@@ -65,7 +65,7 @@ export default class ProductManager {
 
     async getProductById(id) {
 
-        const product = JSON.parse(await readFileSync(this.path, "utf-8"));
+        const product = JSON.parse(await fs.readFile(this.path, "utf-8"));
         const busquedaDeProduct = product.find(item => item.id === id)
         if (!busquedaDeProduct) {
             console.log("No se encontro el producto buscado")
@@ -75,17 +75,23 @@ export default class ProductManager {
 
     }
 
-    async updateProduct(id, propiedad, valor) {
+    async updateProduct(id, modificacion) {
+        try {
+            const datos = await this.leerDatos()
+            console.log(datos)
+            const indice = datos.findIndex(item => item.id === id)
 
-        const product = JSON.parse(await fs.readFile(this.path, "utf-8"));
-        const busquedaDeProduct = product.find(item => item.id === id)
+            if (indice !== -1) {
+                datos[indice] = { ...datos[indice], ...modificacion }
+                await this.guardarDatos(datos);
+                console.log(`El producto fue modificado con exito. \n`, modificacion)
 
-        if (!busquedaDeProduct) {
-            console.log("No se encontro el producto especificado.")
-
-        } else {
-            busquedaDeProduct[propiedad] = valor
-            console.log(`El producto fue modificado con exito. \n`, busquedaDeProduct)
+            } else {
+                console.log("No se encontro el producto especificado.")
+            }
+        } catch (error) {
+            console.log("Error al modificar el producto", error);
+            throw error;
         }
     }
 
@@ -132,7 +138,7 @@ export default class ProductManager {
 }
 
 
-const manager = new ProductManager("./src/models/productos.json")
+// const manager = new ProductManager("./src/models/productos.json")
 
 // manager.addProduct("Mountain bike", "Bicicleta diseñada para terrenos de montaña con suspensión delantera y trasera.", 550, "Sin imagen", "Sin imagen", "MTB001", 15)
 // manager.addProduct("Casco de ciclismo", "Casco ligero y aerodinámico para ciclistas que garantiza la máxima seguridad.", 45, "Sin imagen", "HELM002", 30)
@@ -145,4 +151,4 @@ const manager = new ProductManager("./src/models/productos.json")
 // manager.addProduct("Maillot de ciclismo", "Maillot transpirable y ajustado para un rendimiento óptimo en cada salida en bicicleta.", 40, "Sin imagen", "JER009", 25)
 // manager.addProduct("Llantas de bicicleta de carretera", "Llantas ligeras y resistentes diseñadas para rodar rápido y con estabilidad en carreteras.", 100, "Sin imagen", "RIM010", 12)
 
-console.log(manager.deleteProduct(3))
+// console.log(manager.deleteProduct(1))

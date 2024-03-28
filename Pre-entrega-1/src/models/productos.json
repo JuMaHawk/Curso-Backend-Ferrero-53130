@@ -4,7 +4,7 @@
     "title": "Mountain bike",
     "description": "Bicicleta diseñada para terrenos de montaña con suspensión delantera y trasera.",
     "code": "Sin imagen",
-    "price": 550,
+    "price": 9999999,
     "status": true,
     "stock": 20,
     "category": "Categoria",
@@ -18,6 +18,17 @@
     "price": 45,
     "status": true,
     "stock": 30,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
+  },
+  {
+    "id": 3,
+    "title": "Guantes de ciclismo",
+    "description": "Guantes acolchados para mayor comodidad y protección durante el pedaleo.",
+    "code": "GLOV003",
+    "price": 25,
+    "status": true,
+    "stock": 25,
     "category": "Categoria",
     "thumbnail": "Sin imagen"
   },
@@ -97,5 +108,16 @@
     "stock": 12,
     "category": "Categoria",
     "thumbnail": "Sin imagen"
+  },
+  {
+    "id": 11,
+    "title": "Productos de prueba 2",
+    "description": "Deberia funcionar con el POST.",
+    "code": "PRUEBA1234",
+    "price": 7777,
+    "status": true,
+    "stock": 1,
+    "category": "Categoria",
+    "thumbnail": []
   }
 ]
