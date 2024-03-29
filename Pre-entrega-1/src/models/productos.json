@@ -108,16 +108,5 @@
     "stock": 12,
     "category": "Categoria",
     "thumbnail": "Sin imagen"
-  },
-  {
-    "id": 11,
-    "title": "Productos de prueba 2",
-    "description": "Deberia funcionar con el POST.",
-    "code": "PRUEBA1234",
-    "price": 7777,
-    "status": true,
-    "stock": 1,
-    "category": "Categoria",
-    "thumbnail": []
   }
 ]
