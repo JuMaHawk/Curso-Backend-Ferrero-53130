@@ -28,9 +28,14 @@ export default class ProductManager {
                 return;
             }
 
+
+            const lastProductId = nuevosDatos.length > 0 ? nuevosDatos[nuevosDatos.length - 1].id : 0;
+            const newId = lastProductId + 1;
+
             //INSTANCIO UN NUEVO PRODUCTO
             const newProduct = {
-                id: ++ProductManager.ultimoId,
+                id : newId,
+                // id: ++ProductManager.ultimoId,
                 title,
                 description,
                 code,
