@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "title": "Mountain bike",
+    "description": "Bicicleta diseñada para terrenos de montaña con suspensión delantera y trasera.",
+    "code": "Sin imagen",
+    "price": 9999999,
+    "status": true,
+    "stock": 20,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
+  },
+  {
+    "id": 2,
+    "title": "Casco de ciclismo",
+    "description": "Casco ligero y aerodinámico para ciclistas que garantiza la máxima seguridad.",
+    "code": "HELM002",
+    "price": 45,
+    "status": true,
+    "stock": 30,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
+  },
+  {
+    "id": 3,
+    "title": "Guantes de ciclismo",
+    "description": "Guantes acolchados para mayor comodidad y protección durante el pedaleo.",
+    "code": "GLOV003",
+    "price": 25,
+    "status": true,
+    "stock": 25,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
+  },
+  {
+    "id": 4,
+    "title": "Candado para bicicleta",
+    "description": "Candado resistente y duradero para mantener tu bicicleta segura en todo momento.",
+    "code": "LOCK004",
+    "price": 20,
+    "status": true,
+    "stock": 40,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
+  },
+  {
+    "id": 5,
+    "title": "Faros LED para bicicleta",
+    "description": "Faros delanteros y traseros de alta potencia para una visibilidad óptima en la oscuridad.",
+    "code": "LITE005",
+    "price": 35,
+    "status": true,
+    "stock": 20,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
+  },
+  {
+    "id": 6,
+    "title": "Portabultos trasero",
+    "description": "Portabultos de aluminio ajustable para transportar carga en tu bicicleta de forma segura.",
+    "code": "RACK006",
+    "price": 30,
+    "status": true,
+    "stock": 10,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
+  },
+  {
+    "id": 7,
+    "title": "Pedales automáticos",
+    "description": "Pedales automáticos para una conexión segura y eficiente entre tus zapatos y la bicicleta.",
+    "code": "PEDL007",
+    "price": 60,
+    "status": true,
+    "stock": 15,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
+  },
+  {
+    "id": 8,
+    "title": "Kit de herramientas para bicicleta",
+    "description": "Kit completo de herramientas esenciales para el mantenimiento y reparación de bicicletas.",
+    "code": "TOOL008",
+    "price": 50,
+    "status": true,
+    "stock": 20,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
+  }
+]
