@@ -86,5 +86,27 @@
     "stock": 20,
     "category": "Categoria",
     "thumbnail": "Sin imagen"
+  },
+  {
+    "id": 9,
+    "title": "Maillot de ciclismo",
+    "description": "Maillot transpirable y ajustado para un rendimiento óptimo en cada salida en bicicleta.",
+    "code": "JER009",
+    "price": 40,
+    "status": true,
+    "stock": 25,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
+  },
+  {
+    "id": 10,
+    "title": "Llantas de bicicleta de carretera",
+    "description": "Llantas ligeras y resistentes diseñadas para rodar rápido y con estabilidad en carreteras.",
+    "code": "RIM010",
+    "price": 100,
+    "status": true,
+    "stock": 12,
+    "category": "Categoria",
+    "thumbnail": "Sin imagen"
   }
 ]
