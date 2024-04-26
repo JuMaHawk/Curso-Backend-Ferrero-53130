@@ -33,16 +33,18 @@ app.use("/", viewsRouter);
 
 app.get(("/realtimeproducts"), (req, res) => {
     res.render("realTimeProducts")
-})
+});
 
 app.get("/", (req, res) => {
     res.render("home")
-})
+});
+
+app.get("/chat", (req, res) => {
+    res.render("chat")
+});
 
 
-
-
-//INICIANDO SERVIDOR.
+//INICIANDO SERVIDOR CON EXPRESS.
 const httpServer = app.listen(PUERTO, () => {
     console.log(`Escuchando en http://localhost:${PUERTO}`)
 })
@@ -50,11 +52,13 @@ const httpServer = app.listen(PUERTO, () => {
 //INICIANDO SERVER CON WEBSOCKET.
 const io = new Server(httpServer);
 
+let messages = [];
+
 io.on("connection", async (socket) => {
     console.log("un cliente conectado");
-    
+
     socket.emit("productos", await manager.getProducts())
-    
+
     socket.on("eliminarProducto", async (id) => {
         await manager.deleteProduct(id);
         socket.emit("productos", await manager.getProducts())
@@ -63,11 +67,17 @@ io.on("connection", async (socket) => {
     socket.on("agregarProducto", async (producto) => {
         await manager.addProduct(producto)
         socket.emit("productos", await manager.getProducts())
-    }
-)
+    })
 
+
+    //CONEXIONES CON EL CHAT
+    socket.on("message", data => {
+        messages.push(data);
+        io.emit("mensajesUsuarios", messages)
+    })
 })
 
+//CONECTO CON MONGO DB.
 mongoose.connect("mongodb+srv://jmferrero:JuMaHawk@cluster0.jk1wtsh.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0")
-.then(() =>  console.log("Conectados a la base de datos!"))
-.catch((error) => console.log("Tenemos un error", error))
+    .then(() => console.log("Conectados a la base de datos!"))
+    .catch((error) => console.log("Tenemos un error", error))

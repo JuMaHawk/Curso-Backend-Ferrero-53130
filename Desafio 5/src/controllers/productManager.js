@@ -46,7 +46,7 @@ export default class ProductManager {
 
     async getProducts() {
         try {
-            const nuevosDatos = await ProductsModel.find();
+            const nuevosDatos = await ProductsModel.find().lean();
             return nuevosDatos
         } catch (error) {
             console.log("Error al leer los datos");
