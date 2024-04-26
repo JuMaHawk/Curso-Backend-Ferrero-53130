@@ -36,3 +36,10 @@ h2 {
 #mensajesUsuarios{
     color: white;
 }
+
+#cajaMensajes{
+    margin-left: 50px;
+    width: 30%;
+    border: 3px solid red;
+    border-radius: 3px;
+}

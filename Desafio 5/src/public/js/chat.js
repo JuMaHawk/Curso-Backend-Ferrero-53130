@@ -1,6 +1,4 @@
-
 const socket = io();
-
 let user;
 const cajaMensajes = document.getElementById("cajaMensajes");
 

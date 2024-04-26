@@ -6,11 +6,12 @@ import cartsRouter from "./routes/carts.router.js"
 import viewsRouter from "./routes/views.router.js"
 import ProductManager from "./controllers/productManager.js";
 import mongoose from "mongoose"
+import MessagesModel from "./models/messages.model.js";
 
 const app = express()
 const PUERTO = 8080;
 
-const manager = new ProductManager("./src/models/productos.json")
+const manager = new ProductManager()
 
 //MIDDLEWARES
 app.use(express.json());
@@ -52,7 +53,6 @@ const httpServer = app.listen(PUERTO, () => {
 //INICIANDO SERVER CON WEBSOCKET.
 const io = new Server(httpServer);
 
-let messages = [];
 
 io.on("connection", async (socket) => {
     console.log("un cliente conectado");
@@ -71,10 +71,21 @@ io.on("connection", async (socket) => {
 
 
     //CONEXIONES CON EL CHAT
-    socket.on("message", data => {
-        messages.push(data);
-        io.emit("mensajesUsuarios", messages)
+
+    
+
+    io.on("connection", (socket) => {
+        console.log("Nuevo usuario de chat conectado");
+
+        socket.on("message", async data => {
+
+            await MessagesModel.create(data);
+            const messages = await MessagesModel.find();
+            console.log(messages);
+            io.emit("mensajesUsuarios", messages)
+        })
     })
+
 })
 
 //CONECTO CON MONGO DB.
