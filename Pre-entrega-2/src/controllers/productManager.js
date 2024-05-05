@@ -72,7 +72,15 @@ export default class ProductManager {
             const productos = await ProductsModel.paginate({ category: query }, { page: page, limit: limit})
             console.log(productos)
 
-            return productos
+            const productosOrdenados = productos.docs.aggregate([
+                {
+                $sort: {price : 1}
+                }
+            ])
+
+            console.log(productosOrdenados)
+
+            return productosOrdenados
 
         } catch (error) {
             console.log("Error al leer los datos de la categoria");
