@@ -44,48 +44,92 @@ export default class ProductManager {
 
     }
 
-    async getProducts() {
+    // async getProducts() {
+    //     try {
+    //         const nuevosDatos = await ProductsModel.find().lean();
+    //         return nuevosDatos
+    //     } catch (error) {
+    //         console.log("Error al leer los datos");
+    //     }
+    // }
+
+
+    async getProductsNew({ limit = 10, page = 1, sort, query } = {}) {
         try {
-            const nuevosDatos = await ProductsModel.find().lean();
-            return nuevosDatos
-        } catch (error) {
-            console.log("Error al leer los datos");
-        }
-    }
+            console.log(limit)
+            console.log(page)
+            console.log(sort)
+            console.log(query)
+            const skip = (page - 1) * limit;
 
+            let queryOptions = {};
 
-    async getProductNew(query, limit, page, sort) {
-        if (!limit) {
-            limit = 10;
-        }
-        if (!page) {
-            page = 1;
-        }
-        if (!query) {
-            query = {};
-        }
-        if(!sort){
-            sort = {};
-        }
-        console.log(sort)
-        try {
-            const productos = await ProductsModel.paginate({ category: query }, { page: page, limit: limit})
-            console.log(productos)
+            if (query) {
+                queryOptions = { category: query };
+            }
 
-            const productosOrdenados = productos.docs.aggregate([
-                {
-                $sort: {price : 1}
+            const sortOptions = {};
+            if (sort) {
+                if (sort === 'asc' || sort === 'desc') {
+                    sortOptions.price = sort === 'asc' ? 1 : -1;
+                    console.log(sortOptions)
                 }
-            ])
+            }
+            const productos = await ProductsModel
+                .find(queryOptions)
+                .sort(sortOptions)
+                .skip(skip)
+                .limit(limit);
 
-            console.log(productosOrdenados)
+            const totalProducts = await ProductsModel.countDocuments(queryOptions);
 
-            return productosOrdenados
+            const totalPages = Math.ceil(totalProducts / limit);
+            const hasPrevPage = page > 1;
+            const hasNextPage = page < totalPages;
 
+            return {
+                docs: productos,
+                totalPages,
+                prevPage: hasPrevPage ? page - 1 : null,
+                nextPage: hasNextPage ? page + 1 : null,
+                page,
+                hasPrevPage,
+                hasNextPage,
+                prevLink: hasPrevPage ? `/api/products?limit=${limit}&page=${page - 1}&sort=${sort}&query=${query}` : null,
+                nextLink: hasNextPage ? `/api/products?limit=${limit}&page=${page + 1}&sort=${sort}&query=${query}` : null,
+            };
         } catch (error) {
-            console.log("Error al leer los datos de la categoria");
+            console.log("Error al obtener los productos", error);
+            throw error;
         }
     }
+    
+    
+    
+    // async getProductNew(query, limit, page, sort) {
+    //     if (!limit) {
+    //         limit = 10;
+    //     }
+    //     if (!page) {
+    //         page = 1;
+    //     }
+    //     if (!query) {
+    //         query = {};
+    //     }
+    //     if(!sort){
+    //         sort = -1;
+    //     }
+    //     console.log(sort)
+    //     try {
+    //         const productos = await ProductsModel.paginate({ category: query }, { page: page, limit: limit})
+        
+
+    //         return productos
+
+    //     } catch (error) {
+    //         console.log("Error al leer los datos de la categoria");
+    //     }
+    // }
 
 
     async getProductById(id) {

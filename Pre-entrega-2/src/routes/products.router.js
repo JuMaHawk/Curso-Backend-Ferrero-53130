@@ -26,19 +26,19 @@ const manager = new ProductManager()
 //RUTA PARA TRAER TODOS LOS PRODUCTOS O SOLO LA CANT INDICADA EN LA QUERY LIMIT.
 router.get("/products", async (req, res) => {
     let query = req.query.query;
-    console.log("query :" + query)
+    // console.log("query :" + query)
 
     let limit = parseInt(req.query.limit);
-    console.log("limit :" + limit)
+    // console.log("limit :" + limit)
 
     let page = parseInt(req.query.page);
-    console.log("page :" + page)
+    // console.log("page :" + page)
     
-    let sort = parseInt(req.query.sort);
-    console.log("sort :" + sort)
+    let sort = (req.query.sort);
+    // console.log("sort :" + sort)
 
     try {
-        let todosLosProductos = await manager.getProductNew(query, limit, page,sort)
+        let todosLosProductos = await manager.getProductsNew({limit,sort,page,query})
         res.json(todosLosProductos)
     } catch (error) {
         console.error("Tuvimos un problema al querer obtener el producto", error);
