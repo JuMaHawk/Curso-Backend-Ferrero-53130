@@ -6,12 +6,12 @@ const cartManager = new CartManager();
 
 //1) Creamos un nuevo carrito:
 
-router.get("/carts", async (req, res) => {
+router.get("/", async (req, res) => {
     const listaDeCarritos = await cartManager.cargarCarritos();
     res.json(listaDeCarritos)
 })
 
-router.post("/carts", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         const nuevoCarrito = await cartManager.crearCarrito();
         res.json(nuevoCarrito)
@@ -22,7 +22,7 @@ router.post("/carts", async (req, res) => {
 
 //2) Listamos productos que pertenecen a un carrito determinado
 
-router.get("/carts/:cid", async (req, res) => {
+router.get("/:cid", async (req, res) => {
     const cartId = req.params.cid
 
     try {
@@ -35,7 +35,7 @@ router.get("/carts/:cid", async (req, res) => {
 
 //3) Agregar productos a distintos carritos: 
 
-router.post("/carts/:cid/product/:pid", async (req, res) => {
+router.post("/:cid/product/:pid", async (req, res) => {
     const cartId = req.params.cid;
     const productId = req.params.pid;
     const quantity = req.body.quantity || 1; 

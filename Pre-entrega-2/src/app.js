@@ -26,10 +26,8 @@ app.set("views", "./src/views");
 
 
 // RUTAS
-app.use("/api", productosRouter);
-
-app.use("/api", cartsRouter);
-
+app.use("/api/products", productosRouter);
+app.use("/api/carts", cartsRouter);
 app.use("/", viewsRouter);
 
 app.get(("/realtimeproducts"), (req, res) => {
@@ -57,7 +55,11 @@ const io = new Server(httpServer);
 io.on("connection", async (socket) => {
     console.log("un cliente conectado");
 
-    socket.emit("productos", await manager.getProducts())
+    socket.emit("productos", async (productos) => {
+        const prod = await manager.getProducts()
+        productos = prod.docs
+    }
+    )
 
     socket.on("eliminarProducto", async (id) => {
         await manager.deleteProduct(id);
