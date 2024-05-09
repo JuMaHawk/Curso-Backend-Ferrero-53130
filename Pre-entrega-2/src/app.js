@@ -55,11 +55,8 @@ const io = new Server(httpServer);
 io.on("connection", async (socket) => {
     console.log("un cliente conectado");
 
-    socket.emit("productos", async (productos) => {
-        const prod = await manager.getProducts()
-        productos = prod.docs
-    }
-    )
+    socket.emit("productos", await manager.getProducts())
+    
 
     socket.on("eliminarProducto", async (id) => {
         await manager.deleteProduct(id);

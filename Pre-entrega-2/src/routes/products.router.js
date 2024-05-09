@@ -7,19 +7,53 @@ const manager = new ProductManager()
 
 //RUTA PARA TRAER TODOS LOS PRODUCTOS O SOLO LA CANT INDICADA EN LA QUERY LIMIT.
 router.get("/", async (req, res) => {
-    try {
-        let query = req.query.query;
-        let limit = parseInt(req.query.limit);
-        let page = parseInt(req.query.page);
-        let sort = (req.query.sort);
 
-        let todosLosProductos = await manager.getProducts({limit, page, sort, query})
-        res.json(todosLosProductos)
+    try {
+        const { limit = 10, page = 1, sort, query } = req.query;
+
+        const productos = await manager.getProducts({
+            limit: parseInt(limit),
+            page: parseInt(page),
+            sort,
+            query,
+        });
+
+        res.json({
+            status: 'success',
+            payload: productos.docs,
+            totalPages: productos.totalPages,
+            prevPage: productos.prevPage,
+            nextPage: productos.nextPage,
+            page: productos.page,
+            hasPrevPage: productos.hasPrevPage,
+            hasNextPage: productos.hasNextPage,
+            prevLink: productos.hasPrevPage ? `/api/products?limit=${limit}&page=${productos.prevPage}&sort=${sort}&query=${query}` : null,
+            nextLink: productos.hasNextPage ? `/api/products?limit=${limit}&page=${productos.nextPage}&sort=${sort}&query=${query}` : null,
+        });
+
     } catch (error) {
-        console.error("Tuvimos un problema al querer obtener el producto", error);
-        res.status(500).json({ error: "Error interno del servidor" });
+        console.error("Error al obtener productos", error);
+        res.status(500).json({
+            status: 'error',
+            error: "Error interno del servidor"
+        });
     }
 });
+
+
+    //     try {
+//         let query = req.query.query;
+//         let limit = parseInt(req.query.limit);
+//         let page = parseInt(req.query.page);
+//         let sort = (req.query.sort);
+
+//         let todosLosProductos = await manager.getProducts({limit, page, sort, query})
+//         res.json(todosLosProductos)
+//     } catch (error) {
+//         console.error("Tuvimos un problema al querer obtener el producto", error);
+//         res.status(500).json({ error: "Error interno del servidor" });
+//     }
+// });
 
 
 

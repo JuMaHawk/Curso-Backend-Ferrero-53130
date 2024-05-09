@@ -5,7 +5,12 @@ const manager = new ProductManager();
 
 router.get("/", async (req, res) => {
     try {
-        const productos = await manager.getProducts();
+        let query = req.query.query;
+        let limit = parseInt(req.query.limit);
+        let page = parseInt(req.query.page);
+        let sort = (req.query.sort);
+
+        const productos = await manager.getProducts({limit, sort, page, query});
         res.render("home", {productos:productos.docs})        
     } catch (error) {
         res.status(500).json({error: "Error interno del servidor"})
