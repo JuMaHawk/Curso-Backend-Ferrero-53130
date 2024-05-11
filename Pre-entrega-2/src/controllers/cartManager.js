@@ -34,15 +34,16 @@ export default class CartManager {
 
 
     //AGREGARLE UN PRODUCTO A UN CARRITO ESPECIFICO.
-    async agregarProductoAlCarrito(carritoId, productoId, quantity = 1) {
+    async agregarProductoAlCarrito(cartId, productId, quantity = 1) {
         try {
-            const carrito = await CartModel.findById(carritoId);
-            const existeProducto = carrito.products.find(p => p.products.toString() === productoId);
+            const carrito = await CartModel.findById(cartId);
+        
+            const existeProducto = carrito.products.find(p => p.products.toString() === productId);
 
             if (existeProducto) {
                 existeProducto.quantity += quantity;
             } else {
-                carrito.products.push({ products: productoId, quantity });
+                carrito.products.push({ products: productId, quantity });
             }
 
             carrito.markModified("products")
@@ -103,11 +104,11 @@ export default class CartManager {
         try {
             const cart = await CartModel.findById(cartId)
 
-            if(!cart){
+            if (!cart) {
                 throw new Error("Carrito no encontrado");
             }
             
-            const productIndex = cart.products.findIndex(item => item.products._id.toString() === productId);
+            const productIndex = cart.products.findIndex(item => item._id.toString() === productId);
 
             if(productIndex !== -1) {
                 cart.products[productIndex].quantity = newQuantity;
@@ -142,6 +143,8 @@ export default class CartManager {
         throw error; 
     }
 }
+
+
     //CARGAR TODOS LOS CARRITOS.
     async cargarCarritos() {
         try {

@@ -100,13 +100,15 @@ router.put("/:cid", async (req, res) => {
 
 
 //ACTUALIZAR LAS CANTIDADES DE PRODUCTOS.
-router.put("/:cid/product/:pid", async (req, res) =>{
+router.put("/:cid/product/:pid", async (req, res) => {
     try {
         const cartId = req.params.cid;
         const productId = req.params.pid;
         const newQuantity = req.body.quantity;
 
-        const updatedCart = await CartManager.actualizarCantidadDeProducto(cartId, productId, newQuantity)
+        const updatedCart = await cartManager.actualizarCantidadDeProducto(cartId, productId, newQuantity)
+
+
 
         res.json({
             status: "success",
