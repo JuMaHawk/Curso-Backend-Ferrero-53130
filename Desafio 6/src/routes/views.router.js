@@ -11,23 +11,45 @@ router.get("/", async (req, res) => {
         let sort = (req.query.sort);
 
         const productos = await manager.getProducts({limit, sort, page, query});
-        res.render("home", {productos:productos.docs})        
+        res.render("home", {productos:productos.docs, user: req.session.user})        
     } catch (error) {
         res.status(500).json({error: "Error interno del servidor"})
     }
 })
 
+
 router.get("/realtimeproducts", async (req, res) => {
    res.render("realTimeProducts")
 } )
+
 
 router.get("/login", (req, res) => {
     res.render("login");
 });
 
+
 router.get("/register", (req, res) => {
     res.render("register");
 });
+
+
+router.get("/profile", (req, res) => {
+    if(!req.session.login){
+        return res.redirect("/login");
+    }
+    res.render("profile");
+});
+
+
+router.get("/realtimeproducts", (req, res) => {
+    res.render("realTimeProducts")
+});
+
+
+router.get("/chat", (req, res) => {
+    res.render("chat")
+});
+
 
 
 export default router;

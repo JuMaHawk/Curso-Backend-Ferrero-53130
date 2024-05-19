@@ -41,22 +41,6 @@ router.get("/", async (req, res) => {
 });
 
 
-    //     try {
-//         let query = req.query.query;
-//         let limit = parseInt(req.query.limit);
-//         let page = parseInt(req.query.page);
-//         let sort = (req.query.sort);
-
-//         let todosLosProductos = await manager.getProducts({limit, page, sort, query})
-//         res.json(todosLosProductos)
-//     } catch (error) {
-//         console.error("Tuvimos un problema al querer obtener el producto", error);
-//         res.status(500).json({ error: "Error interno del servidor" });
-//     }
-// });
-
-
-
 //RUTA PARA VER ALGUN PRODUCTO EN PARTICULAR SEGUN SU ID.
 router.get("/:id", async (req, res) => {
     try {
