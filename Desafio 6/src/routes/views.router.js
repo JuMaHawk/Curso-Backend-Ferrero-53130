@@ -1,9 +1,13 @@
 import express from "express";
 import ProductManager from "../controllers/productManager.js"
+import UsuarioModel from "../models/usuario.model.js";
 const router = express.Router();
 const manager = new ProductManager();
 
 router.get("/", async (req, res) => {
+    if(!req.session.login) {
+        res.redirect("/login")
+    }   
     try {
         let query = req.query.query;
         let limit = parseInt(req.query.limit);
@@ -37,7 +41,7 @@ router.get("/profile", (req, res) => {
     if(!req.session.login){
         return res.redirect("/login");
     }
-    res.render("profile");
+    res.render("profile", {user: req.session.user});
 });
 
 

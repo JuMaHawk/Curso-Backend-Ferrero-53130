@@ -22,18 +22,9 @@ router.post("/", async (req, res) => {
             last_name,
             email,
             password: createHash(password),
-            age,
-            role
+            age
         })
 
-        req.session.user = {
-            email: nuevoUsuario.email,
-            first_name: nuevoUsuario.first_name,
-            last_name : nuevoUsuario.last_name,
-            age: nuevoUsuario.age
-        };
-
-        req.session.login = true;
         res.status(200).send("Usuario creado con exito.");
 
     } catch (error) {

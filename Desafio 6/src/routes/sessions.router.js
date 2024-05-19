@@ -17,7 +17,8 @@ router.post("/login", async (req, res) => {
                     first_name: usuario.first_name,
                     email: usuario.email,
                     age: usuario.age,
-                    last_name: usuario.last_name
+                    last_name: usuario.last_name,
+                    role: usuario.role
                 }
                 res.redirect("/");
             } else {
