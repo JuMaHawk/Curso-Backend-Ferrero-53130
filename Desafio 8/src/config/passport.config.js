@@ -4,6 +4,7 @@ import local from "passport-local";
 import UsuarioModel from "../models/usuario.model.js";
 import { createHash, isValidPassword } from "../utils/hashbcrypt.js";
 import GitHubStrategy from "passport-github2";
+import CartModel from "../models/carts.model.js";
 
 
 const LocalStrategy = local.Strategy;
@@ -39,13 +40,15 @@ const initializePassport = () => {
                 console.log("Ya existe el usuario ingresado");
                 return done(null, false);
             };
-
+            const newCart = new CartModel({ products: [] });
+            await newCart.save();
             let nuevoUsuario = {
                 first_name,
                 last_name,
                 email,
                 age,
-                password: createHash(password)
+                password: createHash(password),
+                cart: newCart._id
             }
 
             let resultado = await UsuarioModel.create(nuevoUsuario);
