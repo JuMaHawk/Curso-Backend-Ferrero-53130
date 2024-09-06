@@ -1,0 +1,22 @@
+<h1>LOGIN</h1>
+
+<form action="/api/users/login" method="POST">
+
+    <label for="Email"> Email </label>
+    <input type="email" name="email" required>
+    <br><br>
+
+    <label for="password"> Password </label>
+    <input type="text" name="password" required>
+    <br><br>
+
+    <button type="submit"> Login </button>
+
+    <p>¿No estas registrado?</p>
+    <button><a href="/register"> Registrate </a></button>
+
+
+    <p> ¿Olvidaste tu contraseña?<a href="/reset-password"> Restablecer contraseña </a></p>
+</form>
+
+<button><a href="/api/users/github">GITHUB</a></button> 

@@ -1,0 +1,11 @@
+<h1>Generar un nuevo correo de restablecimiento </h1>
+
+<form action="/api/users/requestPasswordReset" method="POST">
+<label for=""> Email </label>
+<input type="text" name="email" id="email" required>
+<button type="submit"> Enviar correo de restablecimiento0 </button>
+</form>
+
+{{#if error}}
+    <p>{{error}}</p>
+{{/if}}

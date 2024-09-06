@@ -1,0 +1,61 @@
+*{
+    color: white;
+}
+
+input{
+    color:black;
+}
+label{
+    color: red;
+}
+button{
+    color: blue;
+} a {
+    color: rgb(35, 189, 89);
+}
+
+body {
+    background-image: url(../img/fondoweb.webp);
+}
+
+h1 {
+    color: white;
+    text-shadow: rgba(155,155,155, 0.3) 3px 3px;
+    text-align: center;
+}
+
+h2 {
+    color: white;
+}
+
+.cart {
+    color: white;
+    background-color: rgba(111, 111, 111, 0.5);
+    border: 2px solid gray;
+    border-radius: 10px;
+    width: 35%;
+    margin:20px;
+    padding: 5px;
+}
+
+
+.estiloCard {
+    margin: 20px;
+    padding: 15px;
+    border: 2px solid white ;
+    background-color: rgba( 63, 143, 143, 0.3);
+    color: white;
+    width: 50%;
+    border-radius: 10px;
+}
+
+#mensajesUsuarios{
+    color: white;
+}
+
+#cajaMensajes{
+    margin-left: 50px;
+    width: 30%;
+    border: 3px solid red;
+    border-radius: 3px;
+}

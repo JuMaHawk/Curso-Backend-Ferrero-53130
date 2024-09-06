@@ -1,0 +1,21 @@
+{{#if user}}
+<header>
+    <p>Bienvenido/a {{user.first_name}} {{user.last_name}}, tenes permisos de {{user.role}}. </p>
+    <p>Su edad es de  {{user.age}} años. </p>
+    <p>Su email es: {{user.email}} </p>
+    <button>
+        <a href="/api/users/logout"> Logout </a>
+    </button>
+</header>
+{{/if}}
+
+
+<h1>Lista de productos</h1>
+{{#each productos}}
+<div class="cart">
+    <p>Producto: {{this.title}}</p>
+    <p>Descripcion: {{this.description}}</p>
+    <p>Codigo: {{this.code}} </p>
+    <p>Precio: $ {{this.price}} </p>
+</div>
+{{/each}}
